@@ -10,7 +10,7 @@ string numadd(string num1, string num2)
 	bool addition=false;
 	int currentsum=0;
 	if (num1.length() > num2.length()) {bignum = &num1; smallnum = &num2;} else {bignum = &num2; smallnum = &num1;}
-	char result[bignum->length()];
+	char result[bignum->length()-1];
 	for(int i=0;i<smallnum->length();i++)
 	{
 		currentsum=(int)(bignum[0][bignum->length()-i-1]) + (int)(smallnum[0][smallnum->length()-i-1]) -48;
@@ -20,7 +20,7 @@ string numadd(string num1, string num2)
 			currentsum += 1;
 		}
 		if (currentsum >= 58) {addition = true; currentsum -=10; }
-			result[bignum->length()-i-1] = (char)currentsum;
+		result[bignum->length()-i-1] = (char)currentsum;
 	}
 	for(int i=0;i<(bignum->length()-smallnum->length());i++)
 	{
@@ -28,7 +28,8 @@ string numadd(string num1, string num2)
 		{
 			addition=false;
 			currentsum=(int)(bignum[0][bignum->length()-smallnum->length()-i-1])+1;
-			OUT((char)currentsum)
+			// OUT((char)currentsum)
+		if (currentsum >= 58) {addition = true; currentsum -=10; }
 			result[bignum->length()-smallnum->length()-i-1]=(char)currentsum;
 		}else
 		{
