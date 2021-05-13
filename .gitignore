@@ -1,3 +1,4 @@
+.gitignore
 .vscode/tasks.json
 .vscode/launch.json
 compile_commands.json
