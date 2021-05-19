@@ -1,7 +1,9 @@
 Datatype for storing large numbers in c++.
 
-Goals:
+Goals:  
+```
 	-Math Operators.  
 	-Compare Operators.  
 	-Conversion.  
+```
 
