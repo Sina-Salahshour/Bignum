@@ -4,44 +4,44 @@ class Bignum
 private:
     std::string numadd(std::string num1, std::string num2)
 {
-	const std::string one = "1";
 	std::string * bignum;
 	std::string * smallnum;
-	std::string finalresult;
+	if (num1.length() > num2.length()) {bignum = &num1; smallnum = &num2;} else {bignum = &num2; smallnum = &num1;}
 	bool addition=false;
 	int currentsum=0;
-	if (num1.length() > num2.length()) {bignum = &num1; smallnum = &num2;} else {bignum = &num2; smallnum = &num1;}
-	char result[bignum->length()-1];
-    // std::string result = std::string(bignum->length()-1 ,'0');
-	for(int i=0;i<smallnum->length();i++)
+	const std::string one = "1";
+    const int blength = bignum->length();
+    const int slength = smallnum->length();
+    std::string result = std::string(blength,'0');
+	for(int i=0;i<slength;i++)
 	{
-		currentsum=(int)(bignum[0][bignum->length()-i-1]) + (int)(smallnum[0][smallnum->length()-i-1]) -48;
+		currentsum=(int)(bignum[0][blength-i-1]) + (int)(smallnum[0][slength-i-1]) -48;
 		if (addition) 
 		{
 			addition = false;
 			currentsum += 1;
 		}
 		if (currentsum >= 58) {addition = true; currentsum -=10; }
-		result[bignum->length()-i-1] = (char)currentsum;
+		result[blength-i-1] = (char)currentsum;
 	}
-	for(int i=0;i<(bignum->length()-smallnum->length());i++)
+	for(int i=0;i<(blength-slength);i++)
 	{
 		if(addition)
 		{
 			addition=false;
-			currentsum=(int)(bignum[0][bignum->length()-smallnum->length()-i-1])+1;
+			currentsum=(int)(bignum[0][blength-slength-i-1])+1;
 		if (currentsum >= 58) {addition = true; currentsum -=10; }
-			result[bignum->length()-smallnum->length()-i-1]=(char)currentsum;
+			result[blength-slength-i-1]=(char)currentsum;
 		}else
 		{
-			result[bignum->length()-smallnum->length()-i-1]=bignum[0][bignum->length()-smallnum->length()-i-1];
+			result[blength-slength-i-1]=bignum[0][blength-slength-i-1];
 		}
 	}
 	if(addition)
-		finalresult = one + ((std::string)result).substr(0,bignum->length());
+		result = one + result;
 	else
-		finalresult = ((std::string)result).substr(0,bignum->length());;
-	return finalresult;
+        result = result;
+	return result;
 }
     const char pos{'+'};
     const char neg{'-'};
