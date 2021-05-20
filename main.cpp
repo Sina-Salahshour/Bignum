@@ -18,6 +18,11 @@ int main()
 
 	cin >> bn1;
 	cin >> bn2;
-	OUT(bn1-bn2);
+	if(bn1==bn2)
+	{
+		OUT(bn1+bn2)
+	}
+	else
+	OUT(bn1-bn2)
 	return 0;
 }

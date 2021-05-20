@@ -4,7 +4,13 @@ class Bignum
 {
 private:
 bool signchanged = false;
-void changesign()
+    char signmult(char s1, char s2)
+    {
+        char result;
+        s1==s2 ? result='+':result='-';
+        return result;
+    }
+    void changesign()
 {
     if (!signchanged)
     {
@@ -112,6 +118,22 @@ void changesign()
     result = invertnum(result);
     return result;
     }
+    string nummult(string nums1, string nums2) {
+   int n = nums1.size();
+   int m = nums2.size();
+   string ans(n + m, '0');
+   for(int i = n - 1; i>=0; i--){
+      for(int j = m - 1; j >= 0; j--){
+         int p = (nums1[i] - '0') * (nums2[j] - '0') + (ans[i + j + 1] - '0');
+         ans[i+j+1] = p % 10 + '0';
+         ans[i+j] += p / 10 ;
+      }
+   }
+   for(int i = 0; i < m + n; i++){
+      if(ans[i] !='0')return ans.substr(i);
+   }
+   return "0";
+}
     string value;
     const char pos{'+'};
     const char neg{'-'};
@@ -137,10 +159,31 @@ public:
         this->value = input;
         this->sign = sn;
     }
+    bool operator == (Bignum input)
+    {
+        if(this->value == input.value && this->sign == input.sign)
+        return true;
+        return false;
+    }
+    bool operator != (Bignum input)
+    {
+        if(this->value == input.value && this->sign == input.sign)
+        return false;
+        return true;
+    }
     Bignum operator = (const Bignum input)
     {
         this->value = input.value;
         return *this;
+    }
+    Bignum operator * (Bignum input)
+    {
+        Bignum bn;
+        bn.value=bn.nummult(this->value,input.value);
+        remzeros(bn.value);
+        bn.sign=signmult(input.sign,this->sign);
+        if (bn.value == "0") bn.sign = '+';
+        return bn;
     }
     Bignum operator + (Bignum input)
     {   
