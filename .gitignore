@@ -3,6 +3,6 @@
 compile_commands.json
 main
 Bignum
-.vscode/settings.json
 main.cpp
+.vscode/settings.json
 .gitignore
