@@ -1,4 +1,5 @@
 Datatype for storing large numbers in c++.
+(UNFINISHED!)
 
 Goals:  
 	 - Math Operators.  
